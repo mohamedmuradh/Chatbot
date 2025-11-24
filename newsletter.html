@@ -1,161 +1,547 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI News Weekly - Latest Developments</title>
+    <title>AI/ML Newsletter - LLM Optimization & Efficiency</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f4;
+            line-height: 1.6;
+            color: #333;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
         }
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #ffffff;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-            padding: 40px 20px;
-            text-align: center;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
-        .header h1 {
+        h1 {
+            color: #1e40af;
             margin: 0;
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 28px;
         }
-        .header p {
-            margin: 10px 0 0 0;
+        .subtitle {
+            color: #6b7280;
+            margin: 5px 0 0 0;
+            font-size: 14px;
+        }
+        h2 {
+            color: #2563eb;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2563eb;
+            padding-left: 12px;
+        }
+        h3 {
+            color: #374151;
             font-size: 16px;
-            opacity: 0.9;
-        }
-        .content {
-            padding: 30px 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
         .intro {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333333;
-            margin-bottom: 30px;
+            background-color: #eff6ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border-left: 4px solid #3b82f6;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .highlight-box {
+            background-color: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .tip {
+            background-color: #d1fae5;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #10b981;
+        }
+        .code-block {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .resource-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 14px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        .emoji {
+            font-size: 20px;
+            margin-right: 5px;
         }
         .news-item {
-            background-color: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            transition: transform 0.2s;
+            background-color: #fefce8;
+            border-left: 4px solid #eab308;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
         }
-        .news-item:hover {
-            transform: translateX(5px);
-        }
-        .news-item h2 {
-            margin: 0 0 10px 0;
-            font-size: 20px;
-            color: #667eea;
+        .news-item h4 {
+            color: #854d0e;
+            margin: 0 0 8px 0;
+            font-size: 15px;
         }
         .news-item p {
             margin: 0;
-            font-size: 15px;
-            line-height: 1.6;
-            color: #555555;
-        }
-        .badge {
-            display: inline-block;
-            background-color: #667eea;
-            color: #ffffff;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .footer {
-            background-color: #2d3748;
-            color: #ffffff;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        .footer p {
-            margin: 5px 0;
             font-size: 14px;
-            opacity: 0.8;
+            line-height: 1.5;
         }
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
-            margin: 30px 0;
+        .news-badge {
+            display: inline-block;
+            background-color: #eab308;
+            color: #ffffff;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
-            <h1>🤖 AI News Weekly</h1>
-            <p>Your weekly dose of groundbreaking AI developments</p>
+            <h1>🤖 AI/ML Newsletter</h1>
+            <p class="subtitle">Edition #1 - 24-11-2025 | Focus: LLM Optimization & Efficiency</p>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <div class="intro">
-                <p>Hello there! 👋</p>
-                <p>This week has been packed with exciting AI developments from around the globe. From breakthrough compression technologies to massive infrastructure investments, the AI landscape is evolving rapidly. Let's dive into the top stories!</p>
-            </div>
+        <div class="intro">
+            <p><strong>Hello Team,</strong></p>
+            <p>Welcome to the first edition of our AI/ML Newsletter! As Large Language Models become increasingly central to our work, understanding how to build, evaluate, and optimize them efficiently is crucial. This edition covers essential practices from model selection to prompt optimization.</p>
+            <p><em>- Mohamed Muradh, AI/ML Engineer</em></p>
+        </div>
 
-            <div class="divider"></div>
+        <!-- NEW SECTION: This Week in AI News -->
+        <div class="section">
+            <h2>📰 This Week in AI News</h2>
+            <p>Before diving into our technical deep-dive, here are the most exciting AI developments from the past week:</p>
 
-            <!-- News Item 1 -->
             <div class="news-item">
-                <span class="badge">HARDWARE INNOVATION</span>
-                <h2>Samsung's Breakthrough AI Compression Technology</h2>
-                <p>Samsung introduced revolutionary compression technology that enables massive AI models with 30 billion parameters to run on devices with just 3GB of memory. This breakthrough dramatically expands on-device AI capabilities, potentially bringing advanced AI features to mid-range and budget smartphones. The technology marks a significant step toward democratizing access to powerful AI capabilities.</p>
+                <span class="news-badge">HARDWARE INNOVATION</span>
+                <h4>Samsung's Breakthrough AI Compression Technology</h4>
+                <p>Samsung introduced revolutionary compression technology that enables massive AI models with 30 billion parameters to run on devices with just 3GB of memory. This breakthrough dramatically expands on-device AI capabilities, potentially bringing advanced AI features to mid-range and budget smartphones.</p>
             </div>
 
-            <!-- News Item 2 -->
             <div class="news-item">
-                <span class="badge">GLOBAL IMPACT</span>
-                <h2>UAE's $1 Billion AI Investment in Africa</h2>
-                <p>The United Arab Emirates announced a monumental $1 billion commitment to deploy AI solutions across African schools, hospitals, and climate initiatives. This ambitious program aims to bridge technology gaps and accelerate AI adoption across the continent, focusing on education, healthcare, and environmental sustainability. The initiative represents one of the largest AI infrastructure investments in developing regions.</p>
+                <span class="news-badge">GLOBAL IMPACT</span>
+                <h4>UAE's $1 Billion AI Investment in Africa</h4>
+                <p>The United Arab Emirates announced a monumental $1 billion commitment to deploy AI solutions across African schools, hospitals, and climate initiatives. This ambitious program aims to bridge technology gaps and accelerate AI adoption across the continent, focusing on education, healthcare, and environmental sustainability.</p>
             </div>
 
-            <!-- News Item 3 -->
             <div class="news-item">
-                <span class="badge">INFRASTRUCTURE</span>
-                <h2>AWS & HUMAIN Plan Massive AI Data Center in Saudi Arabia</h2>
-                <p>Amazon Web Services and HUMAIN unveiled plans for an enormous 150,000-accelerator AI data center in Saudi Arabia, one of the largest AI computing facilities ever proposed. Alongside this infrastructure investment, they're launching training programs to educate 100,000 Saudis in AI and cloud technologies, creating a new generation of AI talent in the region.</p>
+                <span class="news-badge">INFRASTRUCTURE</span>
+                <h4>AWS & HUMAIN Plan Massive AI Data Center in Saudi Arabia</h4>
+                <p>Amazon Web Services and HUMAIN unveiled plans for an enormous 150,000-accelerator AI data center in Saudi Arabia, one of the largest AI computing facilities ever proposed. Alongside this infrastructure investment, they're launching training programs to educate 100,000 Saudis in AI and cloud technologies.</p>
             </div>
 
-            <!-- News Item 4 -->
             <div class="news-item">
-                <span class="badge">CONSUMER ADOPTION</span>
-                <h2>Ant Group's LingGuang Hits 1 Million Downloads in 4 Days</h2>
-                <p>Ant Group's LingGuang AI agent application achieved a remarkable milestone, surpassing one million downloads in just four days after launch. The app generates custom software for users through AI agents, demonstrating rapid mainstream adoption of autonomous AI systems. This explosive growth signals increasing consumer confidence in AI-powered development tools.</p>
+                <span class="news-badge">CONSUMER ADOPTION</span>
+                <h4>Ant Group's LingGuang Hits 1 Million Downloads in 4 Days</h4>
+                <p>Ant Group's LingGuang AI agent application achieved a remarkable milestone, surpassing one million downloads in just four days after launch. The app generates custom software for users through AI agents, demonstrating rapid mainstream adoption of autonomous AI systems.</p>
             </div>
 
-            <!-- News Item 5 -->
             <div class="news-item">
-                <span class="badge">DEVELOPER TOOLS</span>
-                <h2>Google Launches Antigravity Development Platform</h2>
-                <p>Google unveiled Antigravity, a free agentic development platform powered by Gemini 3 Pro, marking a new era for agent-driven software development. The platform enables developers to build and deploy AI agents with advanced capabilities, democratizing access to cutting-edge AI development tools. This launch positions Google as a major player in the rapidly growing agentic AI ecosystem.</p>
+                <span class="news-badge">DEVELOPER TOOLS</span>
+                <h4>Google Launches Antigravity Development Platform</h4>
+                <p>Google unveiled Antigravity, a free agentic development platform powered by Gemini 3 Pro, marking a new era for agent-driven software development. The platform enables developers to build and deploy AI agents with advanced capabilities, democratizing access to cutting-edge AI development tools.</p>
+            </div>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section">
+            <h2>1. Guidelines & Standard Practices for Building LLM Applications</h2>
+
+            <h3>🎯 Core Principles</h3>
+            <ul>
+                <li><strong>Start Simple:</strong> Begin with prompt engineering before considering fine-tuning or custom models</li>
+                <li><strong>Iterative Development:</strong> Build → Evaluate → Optimize in tight loops</li>
+                <li><strong>Version Control:</strong> Track prompts, configs, and model versions systematically</li>
+                <li><strong>Production Mindset:</strong> Consider latency, cost, and reliability from day one</li>
+            </ul>
+
+            <h3>📋 Development Workflow</h3>
+            <div class="code-block">
+1. Define clear success criteria
+2. Create evaluation dataset (50-100 examples minimum)
+3. Start with strongest model (GPT-4, Claude Sonnet)
+4. Optimize prompts with systematic testing
+5. Consider smaller/cheaper models once baseline established
+6. Implement monitoring and logging
+7. Set up feedback loops for continuous improvement
             </div>
 
-            <div class="divider"></div>
-
-            <div class="intro">
-                <p><strong>What's Next?</strong></p>
-                <p>These developments showcase the rapid pace of AI innovation across hardware, infrastructure, and applications. From making AI more accessible on resource-constrained devices to massive investments in AI infrastructure, we're witnessing the foundation being laid for the next generation of AI capabilities.</p>
+            <div class="tip">
+                <strong>💡 Pro Tip:</strong> Document every prompt iteration with examples and performance metrics. Use tools like LangSmith, PromptLayer, or even a simple spreadsheet.
             </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <h2>2. How to Evaluate LLMs: Best Practices</h2>
+
+            <h3>🔍 Evaluation Framework</h3>
+
+            <table>
+                <tr>
+                    <th>Metric Type</th>
+                    <th>When to Use</th>
+                    <th>Examples</th>
+                </tr>
+                <tr>
+                    <td><strong>Exact Match</strong></td>
+                    <td>Structured outputs, classifications</td>
+                    <td>Accuracy, F1 score</td>
+                </tr>
+                <tr>
+                    <td><strong>Semantic Similarity</strong></td>
+                    <td>Open-ended generation</td>
+                    <td>BLEU, ROUGE, BERTScore</td>
+                </tr>
+                <tr>
+                    <td><strong>LLM-as-Judge</strong></td>
+                    <td>Complex reasoning, quality assessment</td>
+                    <td>GPT-4 grading responses</td>
+                </tr>
+                <tr>
+                    <td><strong>Human Evaluation</strong></td>
+                    <td>Final validation, edge cases</td>
+                    <td>Blind A/B testing</td>
+                </tr>
+            </table>
+
+            <h3>⚡ Key Evaluation Dimensions</h3>
+            <ul>
+                <li><strong>Accuracy:</strong> Does it produce correct results?</li>
+                <li><strong>Relevance:</strong> Does it answer the actual question?</li>
+                <li><strong>Consistency:</strong> Same input → same output?</li>
+                <li><strong>Hallucination Rate:</strong> How often does it make things up?</li>
+                <li><strong>Latency:</strong> Response time (P50, P95, P99)</li>
+                <li><strong>Cost:</strong> $/1K tokens, total monthly spend</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>⚠️ Common Pitfall:</strong> Don't evaluate on your training data! Always maintain a separate test set that the model hasn't seen during development.
+            </div>
+
+            <h3>🛠️ Recommended Tools</h3>
+            <ul>
+                <li><strong>OpenAI Evals:</strong> Framework for evaluating LLMs</li>
+                <li><strong>LangSmith:</strong> LangChain's testing and monitoring platform</li>
+                <li><strong>Ragas:</strong> RAG-specific evaluation metrics</li>
+                <li><strong>Promptfoo:</strong> Open-source LLM testing tool</li>
+                <li><strong>Braintrust:</strong> AI product evaluation platform</li>
+            </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+            <h2>3. Smaller Models for Smaller Tasks</h2>
+
+            <h3>💰 The Cost-Performance Trade-off</h3>
+            <p>Not every task needs GPT-4 or Claude Opus. Choosing the right model size can reduce costs by 10-50x while maintaining quality.</p>
+
+            <table>
+                <tr>
+                    <th>Task Complexity</th>
+                    <th>Recommended Models</th>
+                    <th>Use Cases</th>
+                </tr>
+                <tr>
+                    <td><strong>Simple Classification</strong></td>
+                    <td>GPT-3.5 Turbo, Claude Haiku</td>
+                    <td>Sentiment analysis, category tagging, intent detection</td>
+                </tr>
+                <tr>
+                    <td><strong>Information Extraction</strong></td>
+                    <td>GPT-4o Mini, Claude Haiku</td>
+                    <td>Named entity recognition, data parsing, structured extraction</td>
+                </tr>
+                <tr>
+                    <td><strong>Simple Q&A</strong></td>
+                    <td>GPT-4o Mini, Claude Sonnet</td>
+                    <td>FAQ responses, basic support queries</td>
+                </tr>
+                <tr>
+                    <td><strong>Complex Reasoning</strong></td>
+                    <td>GPT-4, Claude Opus/Sonnet</td>
+                    <td>Multi-step analysis, code generation, strategy planning</td>
+                </tr>
+            </table>
+
+            <div class="tip">
+                <strong>💡 Strategy:</strong> Use a "router" pattern - start with a small model to classify the query complexity, then route to larger models only when needed.
+            </div>
+
+            <h3>📊 Example: Cost Comparison</h3>
+            <div class="code-block">
+Processing 1M simple classification tasks:
+
+GPT-4 Turbo:     $30 input + $60 output = $90
+GPT-4o Mini:     $0.15 input + $0.60 output = $0.75
+Claude Haiku:    $0.25 input + $1.25 output = $1.50
+
+Savings: 60-120x by choosing the right model!
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section">
+            <h2>4. Chain of Thought (CoT) Prompting</h2>
+
+            <h3>🧠 What is Chain of Thought?</h3>
+            <p>CoT prompting encourages the model to show its reasoning steps, dramatically improving accuracy on complex tasks.</p>
+
+            <h3>📝 Basic Example</h3>
+            <div class="code-block">
+<strong>Without CoT:</strong>
+"What is 15% of 240 plus 30?"
+→ Often gets wrong answer
+
+<strong>With CoT:</strong>
+"What is 15% of 240 plus 30? Let's think step by step."
+→ Model breaks down:
+   1. 15% of 240 = 0.15 × 240 = 36
+   2. 36 + 30 = 66
+   3. Final answer: 66 ✓
+            </div>
+
+            <h3>🎯 When to Use CoT</h3>
+            <ul>
+                <li><strong>Mathematical reasoning:</strong> Calculations, word problems</li>
+                <li><strong>Logical deduction:</strong> Multi-step inference</li>
+                <li><strong>Complex decisions:</strong> Weighing multiple factors</li>
+                <li><strong>Code debugging:</strong> Analyzing errors step-by-step</li>
+                <li><strong>Strategic planning:</strong> Breaking down large goals</li>
+            </ul>
+
+            <h3>⚡ Advanced CoT Techniques</h3>
+            <ul>
+                <li><strong>Zero-shot CoT:</strong> Just add "Let's think step by step"</li>
+                <li><strong>Few-shot CoT:</strong> Provide examples with reasoning included</li>
+                <li><strong>Self-consistency:</strong> Generate multiple reasoning paths, pick most common answer</li>
+                <li><strong>Tree of Thoughts:</strong> Explore multiple reasoning branches</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>⚠️ Trade-off:</strong> CoT increases token usage (2-5x) but significantly improves accuracy. Use for high-value tasks where correctness matters more than cost.
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section">
+            <h2>5. Prompt Optimization & Available Tools</h2>
+
+            <h3>🎨 Prompt Engineering Best Practices</h3>
+
+            <h3>Key Principles:</h3>
+            <ul>
+                <li><strong>Be Specific:</strong> Clear instructions > vague requests</li>
+                <li><strong>Provide Context:</strong> Background info improves relevance</li>
+                <li><strong>Use Examples:</strong> Few-shot learning is powerful</li>
+                <li><strong>Define Format:</strong> Specify output structure (JSON, XML, lists)</li>
+                <li><strong>Set Constraints:</strong> Length, style, tone requirements</li>
+                <li><strong>Iterate:</strong> Test variations systematically</li>
+            </ul>
+
+            <h3>🔧 Optimization Techniques</h3>
+            <table>
+                <tr>
+                    <th>Technique</th>
+                    <th>Impact</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>Role Assignment</strong></td>
+                    <td>+10-20% quality</td>
+                    <td>"You are an expert data scientist..."</td>
+                </tr>
+                <tr>
+                    <td><strong>Few-shot Examples</strong></td>
+                    <td>+20-40% accuracy</td>
+                    <td>Show 3-5 input→output pairs</td>
+                </tr>
+                <tr>
+                    <td><strong>Output Formatting</strong></td>
+                    <td>+30-50% reliability</td>
+                    <td>"Return as JSON with keys: {name, category, score}"</td>
+                </tr>
+                <tr>
+                    <td><strong>Temperature Control</strong></td>
+                    <td>Varies by task</td>
+                    <td>0.0 for deterministic, 0.7-1.0 for creative</td>
+                </tr>
+            </table>
+
+            <h3>🛠️ Prompt Optimization Tools</h3>
+
+            <h4>Automated Optimization:</h4>
+            <ul>
+                <li><strong>DSPy:</strong> Programmatic prompt optimization framework (Stanford)</li>
+                <li><strong>PromptPerfect:</strong> AI-powered prompt optimizer</li>
+                <li><strong>Langfuse:</strong> Prompt management and versioning</li>
+            </ul>
+
+            <h4>Testing & Evaluation:</h4>
+            <ul>
+                <li><strong>Promptfoo:</strong> Test prompts against multiple models/configs</li>
+                <li><strong>LangSmith:</strong> Comprehensive LLM testing and debugging</li>
+                <li><strong>Helicone:</strong> Prompt analytics and monitoring</li>
+            </ul>
+
+            <h4>Management & Collaboration:</h4>
+            <ul>
+                <li><strong>PromptLayer:</strong> Version control for prompts</li>
+                <li><strong>HumanLoop:</strong> Collaborative prompt engineering</li>
+                <li><strong>Weights & Biases Prompts:</strong> Track experiments and versions</li>
+            </ul>
+
+            <div class="tip">
+                <strong>💡 Quick Win:</strong> Use prompt caching (available in Claude, GPT-4) to reduce costs by 50-90% for repeated system prompts or large context documents.
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section">
+            <h2>6. When to Consider RAG (Retrieval-Augmented Generation)</h2>
+
+            <h3>🎯 What is RAG?</h3>
+            <p>RAG combines LLMs with external knowledge retrieval to provide accurate, up-to-date information beyond the model's training data.</p>
+
+            <h3>✅ Use RAG When:</h3>
+            <ul>
+                <li><strong>Knowledge Updates:</strong> Information changes frequently (docs, policies, prices)</li>
+                <li><strong>Large Knowledge Base:</strong> Too much info to fit in context window</li>
+                <li><strong>Accuracy Critical:</strong> Need verifiable, sourced responses</li>
+                <li><strong>Private Data:</strong> Company-specific knowledge not in public models</li>
+                <li><strong>Citation Required:</strong> Need to show sources/references</li>
+                <li><strong>Cost Optimization:</strong> Cheaper than fine-tuning for knowledge updates</li>
+            </ul>
+
+            <h3>❌ DON'T Use RAG When:</h3>
+            <ul>
+                <li><strong>General Knowledge:</strong> Model already knows it (waste of resources)</li>
+                <li><strong>Real-time Data:</strong> Need live API calls instead (stock prices, weather)</li>
+                <li><strong>Behavioral Changes:</strong> Need fine-tuning to change style/format</li>
+                <li><strong>Small Context:</strong> Everything fits in prompt (< 10k tokens)</li>
+            </ul>
+
+            <h3>🏗️ RAG Architecture Decisions</h3>
+
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Options</th>
+                    <th>Recommendation</th>
+                </tr>
+                <tr>
+                    <td><strong>Embedding Model</strong></td>
+                    <td>OpenAI, Cohere, E5, BGE</td>
+                    <td>Start with OpenAI text-embedding-3-small</td>
+                </tr>
+                <tr>
+                    <td><strong>Vector DB</strong></td>
+                    <td>Pinecone, Weaviate, Qdrant, Chroma</td>
+                    <td>Pinecone (managed) or Qdrant (self-hosted)</td>
+                </tr>
+                <tr>
+                    <td><strong>Chunking</strong></td>
+                    <td>Fixed, semantic, recursive</td>
+                    <td>Start with 512-1024 token chunks, 10% overlap</td>
+                </tr>
+                <tr>
+                    <td><strong>Retrieval Method</strong></td>
+                    <td>Dense, sparse, hybrid</td>
+                    <td>Hybrid (semantic + keyword) for best results</td>
+                </tr>
+            </table>
+
+            <h3>🚀 RAG vs Fine-tuning Decision Matrix</h3>
+            <div class="code-block">
+Need to update knowledge frequently? → RAG
+Need to change model behavior/style? → Fine-tuning
+Need both? → RAG + Fine-tuning
+
+Cost for 100k documents:
+RAG: $50-200/month (embedding + vector DB)
+Fine-tuning: $500-2000 (one-time, needs retraining for updates)
+            </div>
+
+            <div class="highlight-box">
+                <strong>⚡ Pro Tip:</strong> Start with "naive RAG" (simple retrieval → stuff into prompt). Only add complexity (re-ranking, query rewriting, agents) if you have specific problems to solve.
+            </div>
+
+            <h3>📊 RAG Performance Optimization</h3>
+            <ul>
+                <li><strong>Retrieval Quality:</strong> Optimize chunk size, use hybrid search</li>
+                <li><strong>Re-ranking:</strong> Use Cohere/similar to re-rank top results</li>
+                <li><strong>Query Enhancement:</strong> Rephrase user queries for better retrieval</li>
+                <li><strong>Metadata Filtering:</strong> Add filters (date, category, source)</li>
+                <li><strong>Evaluation:</strong> Track retrieval accuracy and answer quality separately</li>
+            </ul>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p><strong>Stay Updated</strong></p>
-            <p>Thanks for reading! Stay tuned for next week's edition.</p>
-            <p style="margin-top: 20px; font-size: 12px;">© 2024 AI News Weekly. All rights reserved.</p>
+            <p><strong>📬 Feedback & Discussion</strong></p>
+            <p>Have questions or topics you'd like covered in future newsletters? Reply to this email or reach out on Google Chat!</p>
+            <p style="margin-top: 20px; font-size: 12px; color: #9ca3af;">
+                This newsletter is part of our team's knowledge-sharing initiative.<br>
+                Mohamed Muradh | AI/ML Engineer | Constient Global Solution
+            </p>
         </div>
     </div>
 </body>
